@@ -1,6 +1,7 @@
 import glob
 import html
 import re
+import os
 
 import pandas as pd
 
@@ -16,7 +17,7 @@ def create_comments_df(filenames):
     for file_name in filenames:
         if df is not None:
             try:
-                next_df = pd.read_json('../data/' + file_name, encoding="ISO-8859-1")
+                next_df = pd.read_json(os.path.join(os.path.join('..', 'data'),  file_name), encoding="ISO-8859-1")
                 df = pd.concat([df, next_df])
             except Exception as e:
                 print('Cannot load json ' + file_name)
@@ -24,7 +25,7 @@ def create_comments_df(filenames):
 
         else:
             try:
-                df = pd.read_json('../data/' + file_name, encoding="ISO-8859-1")
+                df = pd.read_json(os.path.join(os.path.join('..', 'data'),  file_name), encoding="ISO-8859-1")
             except Exception as e:
                 print('Cannot load json ' + file_name)
                 print(e)

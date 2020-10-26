@@ -1,8 +1,9 @@
 import csv
 import sys
 import pandas as pd
+import os
 
-csv.field_size_limit(sys.maxsize)
+#csv.field_size_limit(sys.maxsize)
 
 # Content
 #content = pd.read_csv('data/content.csv', engine = 'python')
@@ -11,7 +12,7 @@ csv.field_size_limit(sys.maxsize)
 #content.to_csv('data/content-clean.csv', index = False)
 
 # Articles
-articles = pd.read_json('../data/articles.json', encoding='cp1252')
+articles = pd.read_json(os.path.join(os.path.join('..', 'data'),  'articles.json'), encoding='cp1252')
 
 articles['by'] = articles['by'].str.get(0)
 articles['descendants'] = articles['descendants'].str.get(0)
